@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import styles from './style.module.css'
 import Item from '../item'
 import Form from '../form'
@@ -12,8 +13,8 @@ class List extends Component {
 
     async _fetchCall(){
         try{
-            const res = await fetch('http://www.mocky.io/v2/5e66606c3100005100239f27')
-            const data = await res.json()
+            const res = await axios.get('http://www.mocky.io/v2/5e66606c3100005100239f27')
+            const { data } = res
             this.setState({
                 loadding: false,
                 data
