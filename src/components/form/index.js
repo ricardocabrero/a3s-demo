@@ -14,11 +14,11 @@ class Form extends Component {
         }
     }
 
-    _handleChange = (e) => {
+    _handleChange = ({target}) => {
         this.setState({
             stateValue: {
                 quantity: '1',
-                name: e.target.value
+                name: target.value
             } 
         })
     }
