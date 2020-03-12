@@ -11,7 +11,7 @@ class List extends Component {
         errorCall: false
     }
 
-    async _fetchCall(){
+    async _axiosCall(){
         try{
             const res = await axios.get('http://www.mocky.io/v2/5e66606c3100005100239f27')
             const { data } = res
@@ -35,7 +35,7 @@ class List extends Component {
     }
 
     componentDidMount(){
-        this._fetchCall()
+        this._axiosCall()
     }
 
     render(){
