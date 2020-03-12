@@ -26,8 +26,9 @@ class Form extends Component {
     _handleSubmit = () => (e) => {
         e.preventDefault()
         const { newValue } = this.props
-        const { stateValue} = this.state
-        newValue(stateValue)
+        const { stateValue } = this.state
+        const { name } = stateValue
+        name.length && newValue(stateValue)
         this.setState({
             stateValue: {
                 quantity: '',
