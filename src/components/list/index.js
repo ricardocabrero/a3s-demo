@@ -5,6 +5,7 @@ import Form from '../form'
 
 class List extends Component {
     state = {
+        loadding: true,
         data: [],
         errorCall: false
     }
@@ -14,6 +15,7 @@ class List extends Component {
             const res = await fetch('http://www.mocky.io/v2/5e66606c3100005100239f27')
             const data = await res.json()
             this.setState({
+                loadding: false,
                 data
             })
         }
@@ -36,23 +38,30 @@ class List extends Component {
     }
 
     render(){
-        const { data, errorCall } = this.state
+        const { data, loadding , errorCall } = this.state
         const lengthData = data.length
         return(
             <>
             <Form newValue={this._handleNewValue}/>
-            <p>counter: <strong>{lengthData}</strong></p>
-            <ul className={styles.list}>
-                {
-                data.map((el,i) => {
-                return <Item 
-                        key={i}
-                        quantity={el.quantity}
-                        name={el.name}/>
-                    })
-                }
-            </ul>
-            {errorCall && <p>¡Error!</p>}
+            {
+            loadding 
+            ? <p>Loadding...</p>
+            :
+            <div>
+                <p>counter: <strong>{lengthData}</strong></p>
+                <ul className={styles.list}>
+                    {
+                    data.map((el,i) => {
+                    return <Item 
+                            key={i}
+                            quantity={el.quantity}
+                            name={el.name}/>
+                        })
+                    }
+                </ul>
+                {errorCall && <p>¡Error!</p>}
+            </div>
+            }
             </>
         )
     }
