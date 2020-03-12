@@ -2,4 +2,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## A3s-demo
 ### list-app
-_descargar repositorio, ejecutar nmp instal, ejecutar npm start_
+_descargar repositorio, ejecutar nmp install, ejecutar npm start_
