@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as utils from '../../utils'
 import axios from 'axios'
 import styles from './style.module.css'
 import Item from '../item'
@@ -29,6 +30,13 @@ class List extends Component {
 
     _handleNewValue = (newValue) => {
         const { data } = this.state
+        let isRepeat = new utils.IsExist(data, newValue.name)
+        let lengthIsRepeat = isRepeat.length
+        lengthIsRepeat ?
+        this.setState({
+            data: [...isRepeat]
+        })
+        :
         this.setState({
             data: [...data, newValue]
         })
@@ -49,7 +57,10 @@ class List extends Component {
             ? <p>Loadding...</p>
             :
             <div>
-                <p>counter: <strong>{lengthData}</strong></p>
+                <p>counter: 
+                    <strong>{lengthData}</strong>
+                    <strong>&nbsp;({utils.TotalProducts(data)})</strong>
+                </p>
                 <ul className={styles.list}>
                     {
                     data.map((el,i) => {
